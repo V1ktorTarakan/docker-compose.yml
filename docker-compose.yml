@@ -62,7 +62,6 @@ int main() {
     double St = sqrt(a * b);
     
     // Вывод результатов
-    cout << fixed << setprecision(6);
     cout << "\nРезультаты вычислений:" << endl;
     cout << "Среднее арифметическое Sa = " << Sa << endl;
     cout << "Среднее геометрическое St = " << St << endl;
