@@ -1,35 +1,132 @@
-# MediaWiki with MariaDB
-#
-# Access via "http://localhost:8080"
-#   (or "http://$(docker-machine ip):8080" if using docker-machine)
-version: '3'
-services:
-  mediawiki:
-    image: mediawiki
-    restart: always
-    ports:
-      - 8080:80
-    links:
-      - database
-    volumes:
-      - images:/var/www/html/images
-      # After initial setup, download LocalSettings.php to the same directory as
-      # this yaml and uncomment the following line and use compose to restart
-      # the mediawiki service
-      # - ./LocalSettings.php:/var/www/html/LocalSettings.php
-  # This key also defines the name of the database host used during setup instead of the default "localhost"
-  database:
-    image: mariadb
-    restart: always
-    environment:
-      # @see https://phabricator.wikimedia.org/source/mediawiki/browse/master/includes/DefaultSettings.php
-      MYSQL_DATABASE: my_wiki
-      MYSQL_USER: wikiuser
-      MYSQL_PASSWORD: example
-      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
-    volumes:
-      - db:/var/lib/mysql
+4 задача
 
-volumes:
-  images:
-  db:
+
+блок схема
+
+┌─────────────────────────┐
+│        НАЧАЛО          │
+└─────────────────────────┘
+            │
+            ▼
+┌─────────────────────────┐
+│ Ввод чисел a и b       │
+└─────────────────────────┘
+            │
+            ▼
+┌─────────────────────────┐
+│ Проверка: a > 0 и b > 0│
+│   Если нет - ошибка     │
+└─────────────────────────┘
+            │
+            ▼
+┌─────────────────────────┐
+│ Вычисление:            │
+│ Sa = (a + b) / 2       │
+│ St = √(a * b)          │
+└─────────────────────────┘
+            │
+            ▼
+┌─────────────────────────┐
+│ Вывод результатов Sa, St│
+└─────────────────────────┘
+            │
+            ▼
+┌─────────────────────────┐
+│        КОНЕЦ           │
+└─────────────────────────┘
+
+
+Код
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double a, b;
+    
+    cout << "Введите два положительных числа a и b:" << endl;
+    cout << "a = ";
+    cin >> a;
+    cout << "b = ";
+    cin >> b;
+    
+    // Проверка на положительные числа
+    if (a <= 0 || b <= 0) {
+        cout << "!!! Ошибка: числа должны быть положительными!" << endl;
+        return 1;
+    }
+    
+    // Вычисления
+    double Sa = (a + b) / 2.0;
+    double St = sqrt(a * b);
+    
+    // Вывод результатов
+    cout << fixed << setprecision(6);
+    cout << "\nРезультаты вычислений:" << endl;
+    cout << "Среднее арифметическое Sa = " << Sa << endl;
+    cout << "Среднее геометрическое St = " << St << endl;
+    
+    return 0;
+}
+
+
+
+
+16 задача 
+
+┌─────────────────────────────────┐
+│           НАЧАЛО               │
+└─────────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────┐
+│ Ввод длины окружности (c)      │
+└─────────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────┐
+│ Вычисление радиуса: r = c/(2π) │
+└─────────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────┐
+│ Вычисление площади: s = π*r²   │
+└─────────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────┐
+│ Вывод результата (s)           │
+└─────────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────┐
+│            КОНЕЦ               │
+└─────────────────────────────────┘
+
+Код
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double c, r, s;
+    const double PI = 3.14159265358979323846;
+    
+    // Ввод длины окружности
+    cout << "Введите длину окружности c: ";
+    cin >> c;
+    
+    // Вычисление радиуса: r = c / (2 * π)
+    r = c / (2 * PI);
+    
+    // Вычисление площади: s = π * r²
+    s = PI * pow(r, 2);
+    
+    // Вывод результата с высокой точностью
+    cout << fixed << setprecision(8);
+    cout << "Площадь круга: s = " << s << endl;
+    
+    return 0;
+}
