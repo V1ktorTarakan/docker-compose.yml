@@ -44,28 +44,28 @@ using namespace std;
 
 int main() {
     double a, b;
-    
+    setlocale(LC_ALL, "");
     cout << "Введите два положительных числа a и b:" << endl;
     cout << "a = ";
     cin >> a;
     cout << "b = ";
     cin >> b;
-    
+
     // Проверка на положительные числа
     if (a <= 0 || b <= 0) {
         cout << "!!! Ошибка: числа должны быть положительными!" << endl;
         return 1;
     }
-    
+
     // Вычисления
     double Sa = (a + b) / 2.0;
     double St = sqrt(a * b);
-    
+
     // Вывод результатов
     cout << "\nРезультаты вычислений:" << endl;
     cout << "Среднее арифметическое Sa = " << Sa << endl;
     cout << "Среднее геометрическое St = " << St << endl;
-    
+
     return 0;
 }
 
