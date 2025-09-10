@@ -124,7 +124,6 @@ int main() {
     s = PI * pow(r, 2);
     
     // Вывод результата с высокой точностью
-    cout << fixed << setprecision(8);
     cout << "Площадь круга: s = " << s << endl;
     
     return 0;
